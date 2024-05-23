@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from './components/Home';
+import PlayGame from './components/PlayGame';
+import EndGame from './components/EndGame';
+import { useState } from 'react';
 
 function App() {
+  const [statusGame, SetStatusGame] = useState(null);
+
+  let layout;
+  switch (statusGame) {
+    case 'playGame':
+      layout = <PlayGame />
+      break;
+    case 'endGame':
+      layout = <EndGame />
+      break;
+    default:
+      layout = <Home />
+      break;
+
+
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     {layout}
     </div>
   );
 }
