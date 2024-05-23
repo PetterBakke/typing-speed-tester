@@ -1,4 +1,4 @@
-const PlayGame = () => {
+const PlayGame = ({onChangeScore}) => {
   return (
     <h1>PlayGame</h1>
   )
