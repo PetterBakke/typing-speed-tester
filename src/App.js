@@ -22,12 +22,12 @@ function App() {
   }
 
   const handleChangeScore = (type) => {
-    if(type === 'right'){
+    if (type === 'right') {
       setScore({
         ...score,
         right: score.right + 1
       })
-    }else {
+    } else {
       setScore({
         ...score,
         wrong: score.wrong + 1
@@ -38,20 +38,20 @@ function App() {
   let layout;
   switch (statusGame) {
     case 'playGame':
-      layout = <PlayGame  onChangeScore={handleChangeScore}/>
+      layout = <PlayGame onChangeScore={handleChangeScore} />
       break;
     case 'endGame':
       layout = <EndGame />
       break;
     default:
-      layout = <Home onGame={handleChangeStatusGame}/>
+      layout = <Home onGame={handleChangeStatusGame} />
       break;
 
 
   }
   return (
     <div className="App">
-     { layout }
+      {layout}
     </div>
   );
 }

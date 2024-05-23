@@ -21,18 +21,19 @@ const PlayGame = ({ onChangeScore }) => {
       }
       setDataTyping(dataTypingTest);
     }
-    if (dataTyping.length === 0) {
+    if (dataTyping.length === 0 || textTyping.position >= dataTyping.length) {
       addWord();
+      setTextTyping({...textTyping, position: 0})
     }
-  }, [])
+  }, [textTyping.position])
   const handleChangeTyping = e => {
     const valueInput = e.target.value;
-    if(!valueInput.includes(' ')) {
+    if (!valueInput.includes(' ')) {
       setTextTyping({
         ...textTyping,
         value: valueInput
       });
-    }else if(textTyping !== '') {
+    } else if (textTyping !== '') {
       checkResult();
     }
   }
@@ -40,12 +41,18 @@ const PlayGame = ({ onChangeScore }) => {
   const checkResult = () => {
     const dataCheck = dataTyping;
     const wordCheck = dataCheck[textTyping.position].value;
-    if(textTyping.value === wordCheck) {
+    if (textTyping.value === wordCheck) {
       dataCheck[textTyping.position].status = true;
-    }else {
+      onChangeScore('right');
+    } else {
       dataCheck[textTyping.position].status = false;
+      onChangeScore('wrong');
     }
     setDataTyping(dataCheck);
+    setTextTyping({
+      value: '',
+      position: textTyping.position + 1
+    })
   }
 
   return (
@@ -53,11 +60,15 @@ const PlayGame = ({ onChangeScore }) => {
       <ul className="list">
         {
           dataTyping.map((word, index) =>
-          <li key={index}>
-            {
-              word.value
-            }
-          </li>)
+            <li key={index} className={
+              word.status === true ? 'true'
+              : word.status === false 
+              ? ' false' : ''
+            }>
+              {
+                word.value
+              }
+            </li>)
         }
       </ul>
       <div className="inputForm">
