@@ -39,3 +39,43 @@
   opacity: 0;
   animation: showHome 2s .3s ease-in-out 1 forwards;
 }
+
+.playing {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 70% 1fr;
+  padding: 50px;
+  text-align: center;
+  gap: 10px;
+  opacity: 0;
+  animation: showHome 1s ease-in-out 1 forwards;
+}
+
+.playing .list {
+  padding: 50px;
+  list-style: none;
+  text-align: left;
+  background-image: linear-gradient(45deg, #5556a0, #ab84b4);
+  border-radius: 20px;
+  box-shadow: 0 2px p #fff;
+}
+
+.playing li {
+  display: inline-block;
+  font-size: x-large;
+  padding: 10px;
+  text-shadow: 0 2px 2px #0009;
+  position: relative;
+}
+
+.playing input {
+  width: 100%;
+  padding: 20px 0;
+  outline: none;
+  text-align: center;
+  font-size: x-large;
+  background-color: #0005;
+  border: none;
+  color: #fff;
+  border-radius: 20px;
+}
